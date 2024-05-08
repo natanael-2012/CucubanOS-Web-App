@@ -27,7 +27,9 @@ const Header = () => {
           case 'Sign Out':
               // Handle sign out logic
               localStorage.removeItem('token');
-              window.location.href = '/';
+              window.history.pushState(null, '', '/'); // Add new history entry
+              window.location.href = '/'; // Redirect to the login page
+              window.location.reload();
               break;
           default:
               break;

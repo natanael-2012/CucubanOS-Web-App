@@ -32,7 +32,9 @@ const Account = () => {
     const token = localStorage.getItem('token');
     if (!token) {
       // If no token found, redirect the user to the login page
-      window.location.href = '/';
+      window.history.pushState(null, '', '/'); // Add new history entry
+              window.location.href = '/'; // Redirect to the login page
+              window.location.reload();
     }
   }, []);
 
@@ -82,9 +84,12 @@ const Account = () => {
   }, []); // Empty dependency array means this useEffect runs once when the component mounts
 
   const handleSignOut = () => {
-    // Redirect to the login page ("/")
+    // Remove token from local storage
     localStorage.removeItem('token');
-    window.location.href = '/';
+  
+    window.history.pushState(null, '', '/'); // Add new history entry
+    window.location.href = '/'; // Redirect to the login page
+    window.location.reload();
   };
 
   const handleCloseChangePassword = () => {
